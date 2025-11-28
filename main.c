@@ -8,12 +8,38 @@ void init_matrix(void);
 void get_player_move(void);
 void get_computer_move(void);
 void disp_matrix(void);
+void principal (void);
+void program_intro(void);
+
+int counter_player = 0, counter_computer = 0;
 
 int main(void) {
-    char done;
+    char continue_game;
 
-    printf("Este é um jogo da valha!\n");
+    program_intro();
+    do {
+    principal();
+
+    printf("Deseja jogar novamente? (y/n): ");
+    scanf(" %c", &continue_game);
+
+    }while (continue_game == 'y' || continue_game == 'Y' || continue_game == 's' || continue_game == 'S');
+
+    printf("\nObrigado por jogar!\n\n");
+
+    printf("Placar final - Você: %d | Computador: %d\n", counter_player, counter_computer);
+
+
+    return 0;
+}
+
+void program_intro(void) {
+    printf("Bem vindo ao jogo da valha!\n");
     printf("Você estará jogando contra um computador \n");
+}
+
+void principal (void) {
+    char done;
 
     disp_matrix();
 
@@ -33,8 +59,10 @@ int main(void) {
 
 if(done == 'X') {
     printf("Você ganhou \n");
+    counter_player++;
 } else {
     printf("O computador ganhou \n");
+    counter_computer++;
 }
 
 disp_matrix();
